@@ -5,7 +5,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Check out the code from the Git repository
-                git 'https://github.com/yourusername/your-repo.git'
+                git 'https://github.com/KavithaVenugopal/roadmap-projects.git'
             }
         }
 
