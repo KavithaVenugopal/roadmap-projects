@@ -1,0 +1,2 @@
+echo "sample commands"
+echo "thank you"
