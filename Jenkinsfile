@@ -33,10 +33,13 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                docker pull python:latest
+                script {
+                   // Docker pull command
+                    sh 'docker pull python:latest'
+                }
             }
         }
-    
+    } 
 
     post {
         success {
