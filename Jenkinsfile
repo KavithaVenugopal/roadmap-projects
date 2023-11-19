@@ -4,18 +4,18 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // Check out the code from the Git repository
-                git 'https://github.com/KavithaVenugopal/roadmap-projects.git' branch: 'main'
+                script {
+                    // Checkout the source code from the repository
+                    checkout scm
+                }
             }
         }
 
         stage('Build') {
             steps {
                 script {
-                    // Use the Maven tool configured in Jenkins
-                    def mvnHome = tool 'Maven'
-                    // Run Maven build
-                    sh "${mvnHome}/bin/mvn clean install"
+                    // Example build steps for a Node.js project
+                    sh 'npm install'
                 }
             }
         }
@@ -23,33 +23,21 @@ pipeline {
         stage('Test') {
             steps {
                 script {
-                    // Use the Maven tool configured in Jenkins
-                    def mvnHome = tool 'Maven'
-                    // Run Maven tests
-                    sh "${mvnHome}/bin/mvn test"
+                    // Example test execution for a Node.js project
+                    sh 'npm test'
                 }
             }
         }
 
-        stage('Deploy') {
+        stage('Archive Artifacts') {
             steps {
                 script {
-                   // Docker pull command
-                    sh 'docker pull python:latest'
+                    // Archive deployable artifacts
+                    archiveArtifacts 'path/to/artifacts/**/*'
                 }
             }
-        }
-    } 
-
-    post {
-        success {
-            echo 'Pipeline succeeded! Deploying to production...'
-            // Additional deployment steps for production
-        }
-        failure {
-            echo 'Pipeline failed!...'
-            // Additional notification or rollback steps
         }
     }
 }
+
 
