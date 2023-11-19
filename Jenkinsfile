@@ -36,7 +36,7 @@ pipeline {
                 docker pull python:latest
             }
         }
-    }
+    
 
     post {
         success {
